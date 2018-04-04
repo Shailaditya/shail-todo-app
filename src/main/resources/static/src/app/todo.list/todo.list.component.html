@@ -1,0 +1,13 @@
+<table>
+  <tr *ngFor="let todo of todos">
+    <td>
+      <p>{{todo.label}}</p>
+    </td>
+    <td>
+      <p><input type="checkbox" name="vehicle" value="isCompleted" [(ngModel)]="todo.isCompleted" (click)="updateTodo()"/></p>
+    </td>
+    <td>
+      <p><button (click)="deleteTodo(todo.id)">Delete</button></p>
+    </td>
+  </tr>
+</table>
