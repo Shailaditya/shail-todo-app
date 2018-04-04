@@ -9,7 +9,7 @@ public class Todo {
     @Id
     private String id;
     private String label;
-    private Boolean isCompleted;
+    private Boolean completed;
 
     public String getId() {
         return id;
@@ -28,10 +28,10 @@ public class Todo {
     }
 
     public Boolean getCompleted() {
-        return isCompleted;
+        return completed;
     }
 
     public void setCompleted(Boolean completed) {
-        isCompleted = completed;
+        this.completed = completed;
     }
 }

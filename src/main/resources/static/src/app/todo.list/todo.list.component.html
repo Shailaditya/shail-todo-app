@@ -1,13 +1,29 @@
-<table>
-  <tr *ngFor="let todo of todos">
-    <td>
-      <p>{{todo.label}}</p>
-    </td>
-    <td>
-      <p><input type="checkbox" name="vehicle" value="isCompleted" [(ngModel)]="todo.isCompleted" (click)="updateTodo()"/></p>
-    </td>
-    <td>
-      <p><button (click)="deleteTodo(todo.id)">Delete</button></p>
-    </td>
-  </tr>
-</table>
+<div *ngIf="todos" class="table-container mat-elevation-z8">
+  <form class="todo-form">
+    <mat-form-field class="input-field">
+      <input name="label" [(ngModel)]="label" matInput placeholder="Add a Todo">
+    </mat-form-field>
+    <button color="primary" mat-raised-button (click)="createTodo()"> Add </button>
+  </form>
+  <mat-table #table [dataSource]="todos">
+
+    <ng-container matColumnDef="label">
+      <mat-header-cell *matHeaderCellDef> Todo </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.label}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="completed">
+      <mat-header-cell *matHeaderCellDef> Completed </mat-header-cell>
+      <mat-cell *matCellDef="let element"> <mat-checkbox [(ngModel)]="element.completed" (click)="updateTodo(element)"></mat-checkbox></mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+      <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
+      <mat-cell *matCellDef="let element"> <button mat-icon-button (click)="deleteTodo(element.id)"><mat-icon>delete</mat-icon></button></mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  <h3 *ngIf="todos && !todos.length">No Todos Found</h3>
+</div>

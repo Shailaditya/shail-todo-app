@@ -29,10 +29,10 @@ public class TodoController {
     }
 
     @RequestMapping(value="/{id}",method = RequestMethod.PUT)
-    ResponseEntity<?> createTodo(@PathVariable String id, @RequestBody Todo todo){
+    ResponseEntity<?> updateTodo(@PathVariable String id, @RequestBody Todo todo){
         if(todo.getId()==null)
             return new ResponseEntity<>("Use POST method to create",HttpStatus.METHOD_NOT_ALLOWED);
-        else if(todo.getId().equals(id))
+        else if(!todo.getId().equals(id))
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         else return new ResponseEntity<>(service.save(todo),HttpStatus.ACCEPTED);
     }
