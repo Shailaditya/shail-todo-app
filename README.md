@@ -1,5 +1,5 @@
 # shail-todo-app
-Todo Application in Angular 4/Spring MVC/MongoDB
+Todo Application in Angular 4/Spring MVC/MongoDB <br><br>
 
 To Run the app after cloning
 1)Go to project root folder and navigate to src/main/resources/static
